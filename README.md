@@ -10,7 +10,7 @@ TODO
 ## Methods
 
 ### Used Data  
-In study two data sources were used: historical data for 220 days on the number of Infected, Recovered and Dead cases (IRD data) and GoogleTrends data on 14 search requests. Setting n-days to predict, SIDR and GoogleTrends data was taken to show situation n days before prediction.      
+In study two data sources were used: historical data for 220 days of covid-19 epidemy starting 05.07.2020 on the number of Infected, Recovered and Dead cases (IRD data) and GoogleTrends data on 14 search requests. Setting n-days to predict, SIDR and GoogleTrends data was taken to show situation n days before prediction.      
 ##### PINN Data
 Data preprocessing for PINN consists of MinMax normalisation only, after which it is fed to the neural network. In study case we perform training cycle on 190 days and predict number of SIDR cases in next 30 days with PINN. 
 ##### CatBoost Data
