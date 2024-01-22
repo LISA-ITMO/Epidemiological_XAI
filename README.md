@@ -1,7 +1,7 @@
 # Research and analysis of interpretable AI and ML methods for modeling disease dynamics during an epidemic.  
 
 ## Abstract  
-The world has experienced a major epidemic in recent years, with new waves of influenza and acute respiratory infections emerging every year. When using ML and AI in epidemiology, there is a problem of explaining research findings and credibility. This study explored the feasibility of working with PINN (Physics-Informed Neural Networks) in pair with boosting methods, CatBoost in this study case, using SHAP (SHapley Additive exPlanations). In addition, search engine trend data was used to gain a better view and improve predictions as a measure of social sentiment. 
+In recent years, the growing popularity of Explainable Artificial Intelligence (XAI) and Machine Learning (ML) techniques in epidemiology has underscored the critical need to enhance our understanding of these transparent and interpretable models for effective public health decision-making. This study explores the feasibility of working with PINN (Physics-Informed Neural Networks) in pair with boosting methods, CatBoost in this study case, using SHAP (SHapley Additive exPlanations). In addition, search engine trend data was used to gain a better view and improve predictions as a measure of social sentiment. 
 
 ## Introduction
 TODO
@@ -10,7 +10,7 @@ TODO
 ## Methods
 
 ### Used Data  
-In study cases two data sources were used: historical data for 220 days on the number of Infected, Recovered and Dead cases (IRD data) and GoogleTrends data on 14 search requests. Setting n-days to predict, SIDR and GoogleTrends data was taken to show situation n days before prediction.      
+In study two data sources were used: historical data for 220 days on the number of Infected, Recovered and Dead cases (IRD data) and GoogleTrends data on 14 search requests. Setting n-days to predict, SIDR and GoogleTrends data was taken to show situation n days before prediction.      
 ##### PINN Data
 Data preprocessing for PINN consists of MinMax normalisation only, after which it is fed to the neural network. In study case we perform training cycle on 190 days and predict number of SIDR cases in next 30 days with PINN. 
 ##### CatBoost Data
