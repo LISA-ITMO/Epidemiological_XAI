@@ -28,14 +28,30 @@ For this model, each feature was smoothed using the Savitzky-Golay filter ([wiki
 To build confidence when using the DL model, we can modify our loss function so that the model behaves better and more meaningfully. Based on one or a system of differencial equations. In this case the a system of differential equations knowns as SIRD mathematical model is used. This equation contains the variables S(Susceptible), I(Infected), R(Recovered), D(Dead) and coefficients alpha, beta and gamma to represent transmission, recovery and mortality rate, respectivelly. 
 
 <p align="center">
-  <img src="https://i.ibb.co/VBK49w3/unnamed3.png" alt="drawing" width="200"/>
+
+$$
+\begin{cases}
+\displaystyle\frac{dS}{dt} = - \beta S I, \\
+\displaystyle\frac{dI}{dt} = \beta S I - (\alpha + \gamma )I, \\ 
+\displaystyle\frac{dD}{dt} = \gamma I, \\  
+\displaystyle\frac{dR}{dt} = \alpha I.  
+\end{cases}
+$$
+  
 </p>
 
-Hence, loss is formed as sum of RMSE and functions shown earlier:  
-<p align="center">
-$Loss = u * loss_N + (1-u) * loss_F, u-$ regularization rate,
-$loss_N = mean(S-S')^2 + mean(I-I')^2 + mean(R-R')^2+ mean(D-D')^2$  
-$loss_F = mean(f_S)^2 + mean(f_I)^2 + mean(f_R)^2 + mean(f_D)^2$  
+Hence, loss is formed as sum of RMSE and functions shown earlier: 
+
+<p align="center"> 
+  
+$$
+\begin{cases}
+Loss = u * loss_N + (1-u) * loss_F, \quad u - regularization \ rate \\ 
+loss_N = mean(S-S')^2 + mean(I-I')^2 + mean(R-R')^2+ mean(D-D')^2 \\ 
+loss_F = mean(f_S)^2 + mean(f_I)^2 + mean(f_R)^2 + mean(f_D)^2
+\end{cases}
+$$
+  
 </p>
 
 
