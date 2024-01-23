@@ -22,7 +22,7 @@ For this model, each feature was smoothed using the Savitzky-Golay filter ([wiki
 #### PINN - [Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](https://arxiv.org/abs/1711.10561)
 
 <p align="center">
-<img src="https://i.ibb.co/y8d4fSP/unnamed2.png" alt="drawing2" width="100%"/>   
+<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/pinn_pipeline.png" alt="drawing2" width="100%"/>   
 </p>
 
 To build confidence when using the DL model, we can modify our loss function so that the model behaves better and more meaningfully. Based on one or a system of differencial equations. In this case the a system of differential equations knowns as SIRD mathematical model is used. This equation contains the variables S(Susceptible), I(Infected), R(Recovered), D(Dead) and coefficients alpha, beta and gamma to represent transmission, recovery and mortality rate, respectivelly. 
@@ -60,21 +60,40 @@ Neural Net itself features 4 fully-connected hidden layers with ReLU activation 
 #### CatBoost - [CatBoost: unbiased boosting with categorical features](https://arxiv.org/abs/1706.09516)
 
 <p align="center">
-<img src="https://i.ibb.co/rcjqChs/unnamed4.png" alt="drawing2" width="100%"/>   
+<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/catboost_pipeline.png" alt="drawing2" width="100%"/>   
 </p>
 
-The data and preprocessing methods used have been described previously. Within the model, two methods, GridSearch with cross-validation and FeatureSelection based on SHAP values, were used to improve the results. The ordering of these methods was set according to the best performance. Due to the SHAP architecture, it is not possible to reproduce and show the same result every time. However, the feature selection method was set to select 7 features. This reduced the MAPE from 0.07 to 0.04, which is the best result that could be obtained.  
+The data and preprocessing methods used have been described previously. Within the model, two methods, GridSearch with cross-validation and FeatureSelection based on SHAP values, were used to improve the results. The ordering of these methods was set according to the best performance. Due to the SHAP architecture, it is not possible to reproduce and show the same result every time. However, the feature selection method was set to select 24 features. This reduced the RMSE from 3939 to 3555, which is the best result that could be obtained.  
+
+
 
 ### Intepretation of results
 TODO
 <p align="center">
-<img src="https://i.ibb.co/7JFS65y/unnamed5.png" alt="drawing2" width="100%"/>   
+<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap.jpg" alt="drawing2" width="100%"/>   
 </p>
 
 ## Results
-TODO
+The best result to achieve by RMSE is 3,555 as average in predicted 30 days (0,03 MAPE). 
+
+| model             | tuning   | RMSE |
+|-------------------|----------|------|
+| CatBoost w/o PINN | GCV&ast; | 5523 |
+| Raw PINN          | -        | 5180 |
+| CatBoost w/o PINN | GCV&ast; + SF&ast;&ast; | 5154 |
+| CatBoost w/ PINN  | GCV&ast;      | 3939 |
+| CatBoost w/ PINN  | GCV&ast; + SF&ast;&ast; | 3555 |
+
+&ast; - Grid Search with Cross Validation, &ast;&ast; - Select Features method
+
+                                    
+
 <p align="center">
-<img src="https://i.ibb.co/NWKR40p/end-graph.png" alt="drawing2" width="100%"/>   
+<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_no_pinn_graph.png" alt="drawing2" width="100%"/>   
+</p>
+
+<p align="center">
+<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_w_pinn_graph.png" alt="drawing2" width="100%"/>   
 </p>
 
 ## Discussion
