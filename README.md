@@ -104,7 +104,7 @@ Earlier it was defined that crucial part of this study is to go through interpre
 </div>
 
 <div class="img-with-text">
-    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap_wo_pinn.jpg" alt="drawing2" width="100%"/>   
+    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap_wo_pinn_2.jpg" alt="drawing2" width="100%"/>   
     <p align="center">SHAP interpretation for CatBoost without PINN</p>
 </div>
 
