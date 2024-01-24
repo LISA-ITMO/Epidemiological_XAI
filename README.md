@@ -63,38 +63,50 @@ Neural Net itself features 4 fully-connected hidden layers with ReLU activation 
 <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/catboost_pipeline.png" alt="drawing2" width="100%"/>   
 </p>
 
-The data and preprocessing methods used have been described previously. Within the model, two methods, GridSearch with cross-validation and FeatureSelection based on SHAP values, were used to improve the results. The ordering of these methods was set according to the best performance. Due to the SHAP architecture, it is not possible to reproduce and show the same result every time. However, the feature selection method was set to select 24 features. This reduced the RMSE from 3939 to 3555, which is the best result that could be obtained.  
+The data and preprocessing methods used have been described previously. Within the model, two methods, GridSearch with cross-validation and FeatureSelection based on SHAP values, were used to improve the results. The ordering of these methods was set according to the best performance. Due to the SHAP architecture, it is not possible to reproduce and show the same result every time. However, the feature selection method was set to select 24 features. This reduced the RMSE from 3939 to 3555, which is the best result that could be obtained. 
+Experiments were made with the loss funcion and various modifications and ways of tuning the bousting model. The best RMSE (3555) was shown having MAPE as loss function. It is worth noting that the second best result (5% higher loss) was shown without PINN predictions in features.
 
-
-
-### Intepretation of results
-TODO
-<p align="center">
-<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap.jpg" alt="drawing2" width="100%"/>   
-</p>
 
 ## Results
 The best result to achieve by RMSE is 3,555 as average in predicted 30 days (0,03 MAPE). 
 
-| model             | tuning   | RMSE |
-|-------------------|----------|------|
-| CatBoost w/o PINN | GCV&ast; | 5523 |
-| Raw PINN          | -        | 5180 |
-| CatBoost w/o PINN | GCV&ast; + SF&ast;&ast; | 5154 |
-| CatBoost w/ PINN  | GCV&ast;      | 3939 |
-| CatBoost w/ PINN  | GCV&ast; + SF&ast;&ast; | 3555 |
+| Model                  	| Tuning       	| Loss function 	| RMSE     	|
+|------------------------	|--------------	|---------------	|----------	|
+| CatBoost with PINN     	|      GCV     	|      RMSE     	|   5632   	|
+| CatBoost without PINN  	|      GCV     	|      MAPE     	|   5523   	|
+| Raw PINN               	|       -      	|  Custom RMSE  	|   5180   	|
+| CatBoost without PINN  	|   GCV + SF   	|      MAPE     	|   5154   	|
+| CatBoost with PINN     	|   GCV + SF   	|      RMSE     	|   4988   	|
+| CatBoost without PINN  	|      GCV     	|      RMSE     	|   4576   	|
+| CatBoost with PINN     	|      GCV     	|      MAPE     	|   3939   	|
+| CatBoost without PINN  	|   GCV + SF   	|      RMSE     	|   3753   	|
+| **CatBoost with PINN** 	| **GCV + SF** 	|    **MAPE**   	| **3555** 	|
 
 &ast; - Grid Search with Cross Validation, &ast;&ast; - Select Features method
 
                                     
+<div class="img-with-text">
+    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_wo_pinn_graph.png" alt="drawing2" width="100%"/>   
+    <p align="center">Best CatBoost result without PINN</p>
+</div>
 
-<p align="center">
-<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_no_pinn_graph.png" alt="drawing2" width="100%"/>   
-</p>
+<div class="img-with-text">
+    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_w_pinn_graph.png" alt="drawing2" width="100%"/>   
+    <p align="center">Best CatBoost result with PINN</p>
+</div>
 
-<p align="center">
-<img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/cb_w_pinn_graph.png" alt="drawing2" width="100%"/>   
-</p>
+### Intepretation of results
+Earlier it was defined that crucial part of this study is to go through interpretation process and to gain confidence in the prediction. One might say that PINN has played more supportive role, as results for CatBoost without one are only 5% worse. Nevertheless, as loss is calculated as average of 30 days the raw CatBoost prediction is more linear and does not represent unevenness of new infected cases. Moreover, even 5% are crucial in such sphere. 
+
+<div class="img-with-text">
+    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap.jpg" alt="drawing2" width="100%"/>   
+    <p align="center">SHAP interpretation for CatBoost with PINN</p>
+</div>
+
+<div class="img-with-text">
+    <img src="https://github.com/LISA-ITMO/Epidemiological_XAI/blob/main/img/shap_wo_pinn.jpg" alt="drawing2" width="100%"/>   
+    <p align="center">SHAP interpretation for CatBoost without PINN</p>
+</div>
 
 ## Discussion
 TODO
